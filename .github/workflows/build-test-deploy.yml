@@ -1,7 +1,9 @@
 name: build-test-deploy
 on: push
 jobs:
- build:
+[...]
+ test:
+   needs: build
    runs-on: ubuntu-latest
    steps:
      - name: checkout repo
@@ -9,6 +11,6 @@ jobs:
      - name: use node.js
        uses: actions/setup-node@v3
        with:
-        node-version: '18.x'
+         node-version: '18.x'
      - run: npm install
-     - run: npm run build
+     - run: npm test
